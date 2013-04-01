@@ -14,7 +14,7 @@
 Summary: PHP scripting language for creating dynamic web sites
 Name: php
 Version: 5.3.2
-Release: 6%{?dist}
+Release: 6%{?dist}.1
 License: PHP
 Group: Development/Languages
 URL: http://www.php.net/
@@ -56,6 +56,9 @@ Patch203: php-5.3.2-CVE-2010-2531.patch
 Patch204: php-5.3.2-CVE-2010-1866.patch
 Patch205: php-5.3.2-MOPS-2010-060.patch
 Patch206: php-5.3.2-CVE-2010-2094.patch
+Patch207: php-5.3.2-CVE-2010-4645.patch
+Patch208: php-5.3.2-CVE-2010-3870.patch
+Patch209: php-5.3.3-CVE-2009-3709.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -411,6 +414,10 @@ support for using the enchant library to PHP.
 %patch204 -p1 -b .cve1866
 %patch205 -p1 -b .mops060
 %patch206 -p1 -b .cve2094
+
+%patch207 -p1 -b .cve4645
+%patch208 -p1 -b .cve3870
+%patch209 -p1 -b .cve3709
 
 # Prevent %%doc confusion over LICENSE files
 cp Zend/LICENSE Zend/ZEND_LICENSE
@@ -821,6 +828,10 @@ rm files.* macros.php
 %files enchant -f files.enchant
 
 %changelog
+* Wed Jan 19 2011 Joe Orton <jorton@redhat.com> - 5.3.2-6.1
+- add security fixes for CVE-2010-3709, CVE-2010-3870,
+  CVE-2009-5016, CVE-2010-4645 (#670461)
+
 * Tue Aug 17 2010 Joe Orton <jorton@redhat.com> - 5.3.2-6
 - add security fixes for CVE-2010-1866, CVE-2010-2094, CVE-2010-1917,
   CVE-2010-2531, MOPS-2010-060 (#624469)
